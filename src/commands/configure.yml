@@ -1,0 +1,25 @@
+description: >
+  Creates a configuration file for StackHawk to use.
+
+parameters:
+  app_id:
+    type: string
+    default: ""
+    description: "The application ID found in your StackHawk account."
+  env:
+    type: string
+    default: ""
+    description: "The environment name you wish to upload data to in your StackHawk account."
+  host:
+    type: string
+    default: ""
+    description: "The endpoint you wish to scan. i.e. http://localhost:8080"
+
+steps:
+  - run:
+      name: "StackHawk: Create Configuration"
+      command: |
+        echo "app:" > $(pwd)/stackhawk.yml
+        echo "  applicationId: <<parameters.app_id>>" >> $(pwd)/stackhawk.yml
+        echo "  env: <<parameters.env>>" >> $(pwd)/stackhawk.yml
+        echo "  host: <<parameters.host>>" >> $(pwd)/stackhawk.yml

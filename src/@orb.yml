@@ -1,0 +1,9 @@
+version: 2.1
+
+description: >
+  Dynamic scanning integration for use in Skpr projects.
+
+# This information will be displayed in the orb registry and is not mandatory.
+display:
+  home_url: "https://www.skpr.com.au"
+  source_url: "https://www.github.com/skpr/stackhawk-orb"

@@ -1,0 +1,19 @@
+description: >
+  Scans an endpoint with StackHawk.
+
+parameters:
+  api_key:
+    type: string
+    default: ""
+    description: "API Key associated to the StackHawk account"
+
+steps:
+  - run:
+      name: "StackHawk: Scan Application"
+      no_output_timeout: 2.5h
+      command: |
+        docker run --rm \
+          -e API_KEY=<<parameters.api_key>> \
+          --network=host \
+          --volume=$(pwd)/:/hawk \
+          stackhawk/hawkscan
