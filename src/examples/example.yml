@@ -4,16 +4,24 @@ description: >
 usage:
   version: 2.1
   orbs:
-    skpr: skpr/stackhawk@1
-    deploy:
-      jobs:
-        - stackhawk/configure:
-            name: Configure StackHawk
-            app_id: ${STACKHAWK_APP_ID}
-            env: ${STACKHAWK_ENV}
-            host: ${STACKHAWK_HOST}
+    stackhawk: skpr/stackhawk@1.0.0
+  commands:
+    config:
+      - stackhawk/configure:
+        name: Configure StackHawk
+        app_id: ${STACKHAWK_APP_ID}
+        env: ${STACKHAWK_ENV}
+        host: ${STACKHAWK_HOST}
+    scan:
+    - stackhawk/scan:
+        name: Run StackHawk
+        context: skpr-example
+        api_key: ${STACKHAWK_API_KEY}
+  jobs:
+    # Run the Config command
+    config:
+      config
+    # Run the Scan command
+    scan:
+      scan
 
-        - stackhawk/scan:
-            name: Run StackHawk
-            context: skpr-example
-            api_key: ${STACKHAWK_API_KEY}

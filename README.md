@@ -17,7 +17,7 @@ The dev version of skpr/stackhawk@dev:alpha has expired. Dev versions of orbs ar
 If you see this error, you need to publish a dev:alpha version manually. The fix is to run this:
 
 ```
-`circleci orb pack ./src | circleci orb validate -`
+circleci orb pack ./src | circleci orb validate -
 circleci orb pack ./src | circleci orb publish -  skpr/stackhawk@dev:alpha
 ```
 
