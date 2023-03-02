@@ -1,6 +1,6 @@
 # Orb Development Pipeline
 
-This configuration file uses [orb-tools orb]() version 10 to automatically _pack_, _test_, and _publish_ CircleCI orbs using this project structure. View the comments within the config file for a full break  down
+This configuration file uses [orb-tools orb](https://circleci.com/developer/orbs/orb/circleci/orb-tools) version 10 to automatically _pack_, _test_, and _publish_ CircleCI orbs using this project structure. View the comments within the config file for a full break  down
 
 ## Overview:
 
