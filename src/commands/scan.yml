@@ -6,11 +6,15 @@ parameters:
     type: string
     default: ""
     description: "API Key associated to the StackHawk account"
+  timeout:
+    type: string
+    default: "2.5h"
+    description: "Timout value which should be a little longer than the time it takes to scan."
 
 steps:
   - run:
       name: "StackHawk: Scan Application"
-      no_output_timeout: 2.5h
+      no_output_timeout: <<parameters.timeout>>
       command: |
         docker run --rm \
           -e API_KEY=<<parameters.api_key>> \
