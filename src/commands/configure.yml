@@ -31,21 +31,23 @@ steps:
         echo "  applicationId: <<parameters.app_id>>" >> $(pwd)/stackhawk.yml
         echo "  env: <<parameters.env>>" >> $(pwd)/stackhawk.yml
         echo "  host: <<parameters.host>>" >> $(pwd)/stackhawk.yml
-        echo "  authentication:" >> $(pwd)/stackhawk.yml
-        echo "    loggedInIndicator: \"HTTP.*2[0-9][0-9]\\s*O[kK](\\s*)|HTTP.*3[0-9][0-9].*\"" >> $(pwd)/stackhawk.yml
-        echo "    loggedOutIndicator: \"HTTP.*4[0-9][0-9](\\s*)Unauthorized.*\"" >> $(pwd)/stackhawk.yml
-        echo "    usernamePassword:" >> $(pwd)/stackhawk.yml
-        echo "      loginPagePath: /" >> $(pwd)/stackhawk.yml
-        echo "      type: HTTP" >> $(pwd)/stackhawk.yml
-        echo "      loginPath: /" >> $(pwd)/stackhawk.yml
-        echo "      usernameField: user" >> $(pwd)/stackhawk.yml
-        echo "      passwordField: password" >> $(pwd)/stackhawk.yml
-        echo "      scanUsername: <<parameters.username>>" >> $(pwd)/stackhawk.yml
-        echo "      scanPassword: <<parameters.password>>" >> $(pwd)/stackhawk.yml
-        echo "    tokenAuthorization:" >> $(pwd)/stackhawk.yml
-        echo "      type: HEADER" >> $(pwd)/stackhawk.yml
-        echo "      value: Authorization" >> $(pwd)/stackhawk.yml
-        echo "      tokenType: Basic" >> $(pwd)/stackhawk.yml
-        echo "    testPath:" >> $(pwd)/stackhawk.yml
-        echo "      path: /" >> $(pwd)/stackhawk.yml
-        echo "      success: \".*200.*\"" >> $(pwd)/stackhawk.yml
+        if [ ! "" == "<<parameters.username>>" ] && [ ! "" == "<<parameters.password>>" ]; then
+          echo "  authentication:" >> $(pwd)/stackhawk.yml
+          echo '    loggedInIndicator: "HTTP.*2[0-9][0-9]\\s*O[kK](\\s*)|HTTP.*3[0-9][0-9].*"' >> $(pwd)/stackhawk.yml
+          echo '    loggedOutIndicator: "HTTP.*4[0-9][0-9](\\s*)Unauthorized.*"' >> $(pwd)/stackhawk.yml
+          echo "    usernamePassword:" >> $(pwd)/stackhawk.yml
+          echo "      loginPagePath: /" >> $(pwd)/stackhawk.yml
+          echo "      type: HTTP" >> $(pwd)/stackhawk.yml
+          echo "      loginPath: /" >> $(pwd)/stackhawk.yml
+          echo "      usernameField: user" >> $(pwd)/stackhawk.yml
+          echo "      passwordField: password" >> $(pwd)/stackhawk.yml
+          echo "      scanUsername: \"<<parameters.username>>\"" >> $(pwd)/stackhawk.yml
+          echo "      scanPassword: \"<<parameters.password>>\"" >> $(pwd)/stackhawk.yml
+          echo "    tokenAuthorization:" >> $(pwd)/stackhawk.yml
+          echo "      type: HEADER" >> $(pwd)/stackhawk.yml
+          echo "      value: Authorization" >> $(pwd)/stackhawk.yml
+          echo "      tokenType: Basic" >> $(pwd)/stackhawk.yml
+          echo "    testPath:" >> $(pwd)/stackhawk.yml
+          echo "      path: /" >> $(pwd)/stackhawk.yml
+          echo '      success: ".*200.*"' >> $(pwd)/stackhawk.yml3
+        fi
